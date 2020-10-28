@@ -1,59 +1,71 @@
 package com.acrylic.chatfunction;
 
+import acrylic.nmsutils.json.AbstractJSONComponent;
 import acrylic.nmsutils.json.JSON;
-import com.acrylic.chatvariables.AbstractChatVariableSet;
+import acrylic.nmsutils.json.JSONComponent;
 import com.acrylic.chatvariables.ChatVariable;
 import com.acrylic.exceptions.UnableToUseChatVariableException;
-import jdk.internal.net.http.common.Pair;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import java.util.HashSet;
+import java.util.function.Consumer;
 
-public interface AbstractChatProcess {
+public interface AbstractChatProcess extends BaseChatProcess {
 
-    AsyncPlayerChatEvent getEvent();
+    String chatFormat();
 
-    AbstractChatVariableSet<ChatVariable> getChatVariableSet();
+    Consumer<AbstractJSONComponent> messageComponentConsumer();
 
-    JSON getBaseJson();
-
-    default JSON process(String chatFormat) throws UnableToUseChatVariableException {
-        JSON json = getBaseJson();
-        String[] deconstructed = getAnalyzableMessage();
-        Player player = getPlayer();
+    default JSON processMessage() throws UnableToUseChatVariableException {
+        final JSON json = getBaseJson();
+        final String[] deconstructed = getAnalyzableMessage();
+        final Player player = getPlayer();
+        final String splitAt = getChatVariableSet().getSplitter();
 
         HashSet<ChatVariable> used = new HashSet<>();
-        for (String var : deconstructed) {
+        int i = 0;
+        stringDeconstructedLoop: for (String var : deconstructed) {
             for (ChatVariable chatVariable : getChatVariableSet()) {
                 if (chatVariable.getVariable().equalsIgnoreCase(var)) {
                     if (!chatVariable.allowedToUse(player)) {
-                        
+                        break;
                     } else if (!chatVariable.multipleUses() && used.contains(chatVariable)) {
-
+                        throwFailedVariable(chatVariable);
+                        break;
                     } else {
+                        appendVariable(json,chatVariable);
                         used.add(chatVariable);
+                        continue stringDeconstructedLoop;
                     }
                 }
             }
+            //
+            if (i > 0) {
+                append(json,splitAt + var);
+            } else {
+                append(json,var);
+            }
+            i++;
         }
         return json;
     }
 
+    default void appendVariable(JSON json, ChatVariable chatVariable) {
+        json.append(chatVariable.getReplacement(this))
+            .append(JSONComponent.of(chatFormat()));
+    }
+
+    default void append(JSON json, String text) {
+        JSONComponent comp = JSONComponent.of(text);
+        Consumer<AbstractJSONComponent> componentConsumer = messageComponentConsumer();
+        if (componentConsumer != null) componentConsumer.accept(comp);
+        json.append(comp);
+    }
+
     default String[] getAnalyzableMessage() {
-        return getMessage().split(" ");
+        return getMessage().split(getChatVariableSet().getSplitter());
     }
 
-    default Player getPlayer() {
-        return getEvent().getPlayer();
-    }
-
-    default String getMessage() {
-        return getEvent().getMessage();
-    }
-
-    default void throwFailedVariable(ChatVariable chatVariable) throws UnableToUseChatVariableException {
-        throw new UnableToUseChatVariableException(chatVariable,getPlayer());
-    }
 
 }

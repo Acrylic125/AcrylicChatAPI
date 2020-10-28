@@ -9,6 +9,8 @@ public interface AbstractChatVariableSet<T extends ChatVariable> extends Iterabl
 
     PaginatedHashSet<T> getSet();
 
+    String getSplitter();
+
     default void register(T chatVariable) {
         getSet().add(chatVariable);
     }

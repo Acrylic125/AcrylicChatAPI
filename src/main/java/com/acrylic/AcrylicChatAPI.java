@@ -3,8 +3,11 @@ package com.acrylic;
 import com.acrylic.chatvariables.AbstractChatVariableSet;
 import com.acrylic.chatvariables.ChatVariable;
 import com.acrylic.chatvariables.ChatVariableSet;
+import com.acrylic.chatvariables.ItemChatVariable;
+import com.acrylic.tests.Test;
 import lombok.Getter;
 import lombok.Setter;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class AcrylicChatAPI extends JavaPlugin {
@@ -21,7 +24,8 @@ public final class AcrylicChatAPI extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
-
+        chatVariableSet.register(new ItemChatVariable());
+        Bukkit.getPluginManager().registerEvents(new Test(),this);
     }
 
     @Override

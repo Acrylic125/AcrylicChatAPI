@@ -2,6 +2,7 @@ package com.acrylic.chatvariables;
 
 import acrylic.nmsutils.json.AbstractJSONComponent;
 import acrylic.nmsutils.json.JSONComponent;
+import com.acrylic.chatfunction.AbstractChatProcess;
 import com.acrylic.version_latest.Items.Utils.ItemPropertyUtils;
 import com.acrylic.version_latest.Messages.ChatUtils;
 import org.bukkit.entity.Player;
@@ -19,8 +20,8 @@ public class ItemChatVariable implements ChatVariable {
     }
 
     @Override
-    public AbstractJSONComponent getReplacement(Player player) {
-        ItemStack item = player.getItemInHand();
+    public AbstractJSONComponent getReplacement(AbstractChatProcess chatProcess) {
+        ItemStack item = chatProcess.getPlayer().getItemInHand();
         return JSONComponent.of(new ItemPropertyUtils(item).getItemDisplayName()).item(item);
     }
 

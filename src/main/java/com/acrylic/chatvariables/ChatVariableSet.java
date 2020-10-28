@@ -14,6 +14,11 @@ public final class ChatVariableSet implements AbstractChatVariableSet<ChatVariab
         return chatVariables;
     }
 
+    @Override
+    public String getSplitter() {
+        return " ";
+    }
+
     @NotNull
     @Override
     public Iterator<ChatVariable> iterator() {

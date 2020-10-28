@@ -1,5 +1,5 @@
 name: AcrylicChatAPI
 version: ${project.version}
-main: com.acrylic.acrylicchatapi.AcrylicChatAPI
+main: com.acrylic.AcrylicChatAPI
 api-version: 1.16
 authors: [ Acrylic ]
