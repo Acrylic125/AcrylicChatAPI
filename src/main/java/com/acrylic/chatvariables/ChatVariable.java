@@ -16,8 +16,4 @@ public interface ChatVariable {
 
     boolean allowedToUse(Player player);
 
-    boolean multipleUses();
-
-    void failedMultipleUses(Player player);
-
 }

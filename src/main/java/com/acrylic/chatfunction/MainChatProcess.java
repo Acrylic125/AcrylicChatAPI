@@ -9,12 +9,13 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import java.util.function.Consumer;
 
-public class MainChatProcess implements AbstractChatProcess {
+public final class MainChatProcess implements AbstractChatProcess {
 
     private final AsyncPlayerChatEvent event;
 
     private AbstractChatVariableSet<ChatVariable> chatVariableSet = AcrylicChatAPI.getChatVariableSet();
     private JSON json = new JSON();
+    private String chatFormat = "&7";
     private Consumer<AbstractJSONComponent> messageComponentConsumer = null;
 
     public static MainChatProcess of(AsyncPlayerChatEvent event) {
@@ -40,6 +41,11 @@ public class MainChatProcess implements AbstractChatProcess {
         return this;
     }
 
+    public MainChatProcess setChatFormat(String chatFormat) {
+        this.chatFormat = chatFormat;
+        return this;
+    }
+
     @Override
     public AsyncPlayerChatEvent getEvent() {
         return event;
@@ -57,7 +63,7 @@ public class MainChatProcess implements AbstractChatProcess {
 
     @Override
     public String chatFormat() {
-        return "&f";
+        return chatFormat;
     }
 
     @Override

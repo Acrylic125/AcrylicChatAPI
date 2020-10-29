@@ -22,7 +22,8 @@ public interface AbstractChatVariableSet<T extends ChatVariable> extends Iterabl
     default void unregister(String chatVariable) {
         for (T t : getSet()) {
             if (t.getVariable().equals(chatVariable)) {
-
+                unregister(t);
+                break;
             }
         }
     }

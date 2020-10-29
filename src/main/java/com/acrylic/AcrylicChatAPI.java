@@ -1,9 +1,6 @@
 package com.acrylic;
 
-import com.acrylic.chatvariables.AbstractChatVariableSet;
-import com.acrylic.chatvariables.ChatVariable;
-import com.acrylic.chatvariables.ChatVariableSet;
-import com.acrylic.chatvariables.ItemChatVariable;
+import com.acrylic.chatvariables.*;
 import com.acrylic.tests.Test;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,8 +21,9 @@ public final class AcrylicChatAPI extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
-        chatVariableSet.register(new ItemChatVariable());
-        Bukkit.getPluginManager().registerEvents(new Test(),this);
+        //chatVariableSet.register(new ItemChatVariable());
+        //chatVariableSet.register(new TestChatVariable());
+        //Bukkit.getPluginManager().registerEvents(new Test(),this);
     }
 
     @Override

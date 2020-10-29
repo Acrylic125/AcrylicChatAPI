@@ -12,6 +12,6 @@ public class UnableToUseChatVariableException extends Exception {
 
     @Override
     public String toString() {
-        return player.getName() + " is not able to use " + chatVariable.getVariable();
+        return "UnableToUseChatVariableException: " + player.getName() + " is not able to use " + chatVariable.getVariable() + ".";
     }
 }

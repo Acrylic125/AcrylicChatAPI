@@ -12,17 +12,16 @@ import org.bukkit.inventory.ItemStack;
  * By default, this will not be registered to any chat variable set
  * as this is an example.
  */
-public class ItemChatVariable implements SingleUseChatVariable {
+public class TestChatVariable implements SingleUseChatVariable {
 
     @Override
     public String getVariable() {
-        return "[item]";
+        return "[bal]";
     }
 
     @Override
     public AbstractJSONComponent getReplacement(AbstractChatProcess chatProcess) {
-        ItemStack item = chatProcess.getPlayer().getItemInHand();
-        return JSONComponent.of("&r&8[" + new ItemPropertyUtils(item).getItemDisplayName() + "&r&8]").item(item);
+        return JSONComponent.of("&r&8[&aI am gay!&r&8]");
     }
 
     @Override
