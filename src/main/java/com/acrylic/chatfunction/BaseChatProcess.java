@@ -1,9 +1,9 @@
 package com.acrylic.chatfunction;
 
-import acrylic.nmsutils.json.JSON;
 import com.acrylic.chatvariables.AbstractChatVariableSet;
 import com.acrylic.chatvariables.ChatVariable;
 import com.acrylic.exceptions.UnableToUseChatVariableException;
+import com.acrylic.universal.json.JSON;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
@@ -24,7 +24,7 @@ public interface BaseChatProcess {
     }
 
     default void throwFailedVariable(ChatVariable chatVariable) throws UnableToUseChatVariableException {
-        throw new UnableToUseChatVariableException(chatVariable,getPlayer());
+        throw new UnableToUseChatVariableException(chatVariable, getPlayer());
     }
 
 }

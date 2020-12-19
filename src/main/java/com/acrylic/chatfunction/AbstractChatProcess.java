@@ -1,11 +1,11 @@
 package com.acrylic.chatfunction;
 
-import acrylic.nmsutils.json.AbstractJSONComponent;
-import acrylic.nmsutils.json.JSON;
-import acrylic.nmsutils.json.JSONComponent;
 import com.acrylic.chatvariables.ChatVariable;
 import com.acrylic.chatvariables.SingleUseChatVariable;
 import com.acrylic.exceptions.UnableToUseChatVariableException;
+import com.acrylic.universal.json.AbstractJSONComponent;
+import com.acrylic.universal.json.JSON;
+import com.acrylic.universal.json.JSONComponent;
 import org.bukkit.entity.Player;
 
 import java.util.HashSet;
@@ -28,7 +28,7 @@ public interface AbstractChatProcess extends BaseChatProcess {
         int i = 0;
         stringDeconstructedLoop: for (String var : deconstructed) {
             for (ChatVariable chatVariable : getChatVariableSet()) {
-                if (chatVariable.getVariable().equalsIgnoreCase(var)) {
+                if (chatVariable.isThisVariable(var)) {
                     if (!chatVariable.allowedToUse(player)) {
                         throwFailedVariable(chatVariable);
                         break;
@@ -37,7 +37,7 @@ public interface AbstractChatProcess extends BaseChatProcess {
                         break;
                     } else {
                         if (i > 0) append(json,splitAt);
-                        appendVariable(json,chatVariable);
+                        appendVariable(json, chatVariable, var);
                         used.add(chatVariable);
                         i++;
                         continue stringDeconstructedLoop;
@@ -55,8 +55,8 @@ public interface AbstractChatProcess extends BaseChatProcess {
         return json;
     }
 
-    default void appendVariable(JSON json, ChatVariable chatVariable) {
-        json.append(chatVariable.getReplacement(this));
+    default void appendVariable(JSON json, ChatVariable chatVariable, String var) {
+        json.append(chatVariable.getReplacement(this, var));
     }
 
     default void append(JSON json, String text) {
@@ -67,7 +67,7 @@ public interface AbstractChatProcess extends BaseChatProcess {
     }
 
     default String[] getAnalyzableMessage() {
-        return getMessage().split(getChatVariableSet().getSplitter());
+        return getChatVariableSet().getSplittingPattern().split(getMessage());
     }
 
 

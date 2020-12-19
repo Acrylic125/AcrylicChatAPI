@@ -1,14 +1,17 @@
 package com.acrylic.exceptions;
 
 import com.acrylic.chatvariables.ChatVariable;
-import lombok.AllArgsConstructor;
 import org.bukkit.entity.Player;
 
-@AllArgsConstructor
 public class UnableToUseChatVariableException extends Exception {
 
     private final ChatVariable chatVariable;
     private final Player player;
+
+    public UnableToUseChatVariableException(ChatVariable chatVariable, Player player) {
+        this.chatVariable = chatVariable;
+        this.player = player;
+    }
 
     @Override
     public String toString() {

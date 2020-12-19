@@ -1,12 +1,13 @@
 package com.acrylic.chatvariables;
 
-import acrylic.nmsutils.json.AbstractJSONComponent;
-import acrylic.nmsutils.json.JSONComponent;
 import com.acrylic.chatfunction.AbstractChatProcess;
-import com.acrylic.version_latest.Items.Utils.ItemPropertyUtils;
-import com.acrylic.version_latest.Messages.ChatUtils;
+import com.acrylic.universal.json.AbstractJSONComponent;
+import com.acrylic.universal.json.JSONComponent;
+import com.acrylic.universal.text.ChatUtils;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.regex.Pattern;
 
 /**
  * By default, this will not be registered to any chat variable set
@@ -20,7 +21,7 @@ public class TestChatVariable implements SingleUseChatVariable {
     }
 
     @Override
-    public AbstractJSONComponent getReplacement(AbstractChatProcess chatProcess) {
+    public AbstractJSONComponent getReplacement(@NotNull AbstractChatProcess chatProcess, @NotNull String var) {
         return JSONComponent.of("&r&8[&aI am gay!&r&8]");
     }
 

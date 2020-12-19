@@ -1,12 +1,14 @@
 package com.acrylic.chatvariables;
 
-import acrylic.nmsutils.json.AbstractJSONComponent;
-import acrylic.nmsutils.json.JSONComponent;
 import com.acrylic.chatfunction.AbstractChatProcess;
-import com.acrylic.version_latest.Items.Utils.ItemPropertyUtils;
-import com.acrylic.version_latest.Messages.ChatUtils;
+import com.acrylic.universal.items.ItemUtils;
+import com.acrylic.universal.json.AbstractJSONComponent;
+import com.acrylic.universal.json.JSONComponent;
+import com.acrylic.universal.text.ChatUtils;
+import com.acrylic.version_1_8.nbt.NBTItem;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * By default, this will not be registered to any chat variable set
@@ -20,9 +22,9 @@ public class ItemChatVariable implements SingleUseChatVariable {
     }
 
     @Override
-    public AbstractJSONComponent getReplacement(AbstractChatProcess chatProcess) {
+    public AbstractJSONComponent getReplacement(@NotNull AbstractChatProcess chatProcess, @NotNull String var) {
         ItemStack item = chatProcess.getPlayer().getItemInHand();
-        return JSONComponent.of("&r&8[" + new ItemPropertyUtils(item).getItemDisplayName() + "&r&8]").item(item);
+        return JSONComponent.of("&r&8[" + ItemUtils.getNameWithAmount(item) + "&r&8]").item(new NBTItem(item));
     }
 
     @Override

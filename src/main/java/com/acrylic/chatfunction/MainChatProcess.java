@@ -1,10 +1,10 @@
 package com.acrylic.chatfunction;
 
-import acrylic.nmsutils.json.AbstractJSONComponent;
-import acrylic.nmsutils.json.JSON;
 import com.acrylic.AcrylicChatAPI;
 import com.acrylic.chatvariables.AbstractChatVariableSet;
 import com.acrylic.chatvariables.ChatVariable;
+import com.acrylic.universal.json.AbstractJSONComponent;
+import com.acrylic.universal.json.JSON;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import java.util.function.Consumer;
