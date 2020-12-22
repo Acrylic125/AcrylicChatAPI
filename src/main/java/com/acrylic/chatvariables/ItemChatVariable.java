@@ -1,6 +1,7 @@
 package com.acrylic.chatvariables;
 
 import com.acrylic.chatfunction.AbstractChatProcess;
+import com.acrylic.universal.NMSBridge;
 import com.acrylic.universal.items.ItemUtils;
 import com.acrylic.universal.json.AbstractJSONComponent;
 import com.acrylic.universal.json.JSONComponent;
@@ -24,7 +25,8 @@ public class ItemChatVariable implements SingleUseChatVariable {
     @Override
     public AbstractJSONComponent getReplacement(@NotNull AbstractChatProcess chatProcess, @NotNull String var) {
         ItemStack item = chatProcess.getPlayer().getItemInHand();
-        return JSONComponent.of("&r&8[" + ItemUtils.getNameWithAmount(item) + "&r&8]").item(new NBTItem(item));
+        NMSBridge bridge = NMSBridge.getBridge();
+        return bridge.getJSONComponent("&r&8[" + ItemUtils.getNameWithAmount(item) + "&r&8]").item(bridge.getNBTItem(item));
     }
 
     @Override

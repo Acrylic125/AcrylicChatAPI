@@ -1,6 +1,7 @@
 package com.acrylic.chatvariables;
 
 import com.acrylic.chatfunction.AbstractChatProcess;
+import com.acrylic.universal.NMSBridge;
 import com.acrylic.universal.json.AbstractJSONComponent;
 import com.acrylic.universal.json.JSONComponent;
 import com.acrylic.universal.text.ChatUtils;
@@ -22,7 +23,7 @@ public class TestChatVariable implements SingleUseChatVariable {
 
     @Override
     public AbstractJSONComponent getReplacement(@NotNull AbstractChatProcess chatProcess, @NotNull String var) {
-        return JSONComponent.of("&r&8[&aI am gay!&r&8]");
+        return NMSBridge.getBridge().getJSONComponent("&r&8[&aI am gay!&r&8]");
     }
 
     @Override
