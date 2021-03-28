@@ -19,10 +19,10 @@ public final class AcrylicChatAPI extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
-        chatVariableSet.register(new ItemChatVariable());
-        chatVariableSet.register(new TestChatVariable());
-        chatVariableSet.register(new CommandVariable());
-        Bukkit.getPluginManager().registerEvents(new Test(),this);
+//        chatVariableSet.register(new ItemChatVariable());
+//        chatVariableSet.register(new TestChatVariable());
+//        chatVariableSet.register(new CommandVariable());
+//        Bukkit.getPluginManager().registerEvents(new Test(),this);
     }
 
     @Override

@@ -2,7 +2,6 @@ package com.acrylic.chatvariables;
 
 import com.acrylic.chatfunction.AbstractChatProcess;
 import com.acrylic.universal.text.ChatUtils;
-import com.acrylic.universalnms.json.AbstractJSONComponent;
 import com.acrylic.universalnms.json.JSONComponent;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -19,7 +18,7 @@ public class TestChatVariable implements SingleUseChatVariable {
     }
 
     @Override
-    public AbstractJSONComponent getReplacement(@NotNull AbstractChatProcess chatProcess, @NotNull String var) {
+    public JSONComponent getReplacement(@NotNull AbstractChatProcess chatProcess, @NotNull String var) {
         return JSONComponent.of("&r&8[&aI am gay!&r&8]");
     }
 

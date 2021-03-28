@@ -1,7 +1,6 @@
 package com.acrylic.chatvariables;
 
 import com.acrylic.chatfunction.AbstractChatProcess;
-import com.acrylic.universalnms.json.AbstractJSONComponent;
 import com.acrylic.universalnms.json.JSONComponent;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -20,7 +19,7 @@ public class CommandVariable implements ChatVariable {
     }
 
     @Override
-    public AbstractJSONComponent getReplacement(@NotNull AbstractChatProcess chatProcess, @NotNull String var) {
+    public JSONComponent getReplacement(@NotNull AbstractChatProcess chatProcess, @NotNull String var) {
         var = COMMAND_SLICER.matcher(var).replaceAll(" ");
         var = COMMAND_IDENTIFIER_HEAD.matcher(var).replaceFirst("");
         var = COMMAND_IDENTIFIER_TAIL.matcher(var).replaceFirst("");

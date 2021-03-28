@@ -3,7 +3,6 @@ package com.acrylic.chatfunction;
 import com.acrylic.chatvariables.ChatVariable;
 import com.acrylic.chatvariables.SingleUseChatVariable;
 import com.acrylic.exceptions.UnableToUseChatVariableException;
-import com.acrylic.universalnms.json.AbstractJSONComponent;
 import com.acrylic.universalnms.json.JSON;
 import com.acrylic.universalnms.json.JSONComponent;
 import org.bukkit.entity.Player;
@@ -15,7 +14,7 @@ public interface AbstractChatProcess extends BaseChatProcess {
 
     String chatFormat();
 
-    Consumer<AbstractJSONComponent> messageComponentConsumer();
+    Consumer<JSONComponent> messageComponentConsumer();
 
     default JSON processMessage() throws UnableToUseChatVariableException {
         final JSON json = (JSON) getBaseJson().duplicate();
@@ -61,7 +60,7 @@ public interface AbstractChatProcess extends BaseChatProcess {
 
     default void append(JSON json, String text) {
         JSONComponent comp = JSONComponent.of(text);
-        Consumer<AbstractJSONComponent> componentConsumer = messageComponentConsumer();
+        Consumer<JSONComponent> componentConsumer = messageComponentConsumer();
         if (componentConsumer != null) componentConsumer.accept(comp);
         json.append(comp);
     }

@@ -21,14 +21,14 @@ public class Test implements Listener {
                         jsonComponent.subText("&7Raw Message:", event.getMessage());
                     });
             SingleSender sender = chatProcess
-                    .setJSON(new JSON(JSONComponent.of("&c&l" + event.getPlayer().getName() + " &8&l> ")))
+                    .setJSON(JSON.create(JSONComponent.of("&c&l" + event.getPlayer().getName() + " &8&l> ")))
                     .setChatFormat("&c")
                     .processMessage()
                     .getSender();
             sender.setCondition(ServerOperator::isOp);
             sender.sendToAllOnline();
             sender = chatProcess
-                    .setJSON(new JSON(JSONComponent.of("&f" + event.getPlayer().getName() + " &8&l> ")))
+                    .setJSON(JSON.create(JSONComponent.of("&f" + event.getPlayer().getName() + " &8&l> ")))
                     .setChatFormat("&7")
                     .processMessage()
                     .getSender();

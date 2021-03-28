@@ -3,8 +3,8 @@ package com.acrylic.chatfunction;
 import com.acrylic.AcrylicChatAPI;
 import com.acrylic.chatvariables.AbstractChatVariableSet;
 import com.acrylic.chatvariables.ChatVariable;
-import com.acrylic.universalnms.json.AbstractJSONComponent;
 import com.acrylic.universalnms.json.JSON;
+import com.acrylic.universalnms.json.JSONComponent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import java.util.function.Consumer;
@@ -14,9 +14,9 @@ public final class MainChatProcess implements AbstractChatProcess {
     private final AsyncPlayerChatEvent event;
 
     private AbstractChatVariableSet<ChatVariable> chatVariableSet = AcrylicChatAPI.getChatVariableSet();
-    private JSON json = new JSON();
+    private JSON json = JSON.create();
     private String chatFormat = "&7";
-    private Consumer<AbstractJSONComponent> messageComponentConsumer = null;
+    private Consumer<JSONComponent> messageComponentConsumer = null;
 
     public static MainChatProcess of(AsyncPlayerChatEvent event) {
         return new MainChatProcess(event);
@@ -36,7 +36,7 @@ public final class MainChatProcess implements AbstractChatProcess {
         return this;
     }
 
-    public MainChatProcess modifyMessageComponent(Consumer<AbstractJSONComponent> messageComponentConsumer) {
+    public MainChatProcess modifyMessageComponent(Consumer<JSONComponent> messageComponentConsumer) {
         this.messageComponentConsumer = messageComponentConsumer;
         return this;
     }
@@ -67,7 +67,7 @@ public final class MainChatProcess implements AbstractChatProcess {
     }
 
     @Override
-    public Consumer<AbstractJSONComponent> messageComponentConsumer() {
+    public Consumer<JSONComponent> messageComponentConsumer() {
         return messageComponentConsumer;
     }
 }

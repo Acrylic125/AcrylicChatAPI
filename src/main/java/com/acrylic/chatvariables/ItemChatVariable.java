@@ -3,8 +3,6 @@ package com.acrylic.chatvariables;
 import com.acrylic.chatfunction.AbstractChatProcess;
 import com.acrylic.universal.items.ItemUtils;
 import com.acrylic.universal.text.ChatUtils;
-import com.acrylic.universalnms.NMSLib;
-import com.acrylic.universalnms.json.AbstractJSONComponent;
 import com.acrylic.universalnms.json.JSONComponent;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -22,9 +20,10 @@ public class ItemChatVariable implements SingleUseChatVariable {
     }
 
     @Override
-    public AbstractJSONComponent getReplacement(@NotNull AbstractChatProcess chatProcess, @NotNull String var) {
+    public JSONComponent getReplacement(@NotNull AbstractChatProcess chatProcess, @NotNull String var) {
         ItemStack item = chatProcess.getPlayer().getItemInHand();
-        return JSONComponent.of("&r&8[" + ItemUtils.getNameWithAmount(item) + "&r&8]").item(NMSLib.getNMSUtilityFactory().getNewNBTItem(item));
+        return JSONComponent.of("&r&8[" + ItemUtils.getNameWithAmount(item) + "&r&8]")
+                .item(item);
     }
 
     @Override

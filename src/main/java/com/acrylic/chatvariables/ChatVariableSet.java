@@ -1,6 +1,5 @@
 package com.acrylic.chatvariables;
 
-import com.acrylic.paginatedcollection.PaginatedHashSet;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashSet;
