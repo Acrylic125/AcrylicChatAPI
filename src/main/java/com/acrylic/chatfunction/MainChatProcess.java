@@ -3,8 +3,8 @@ package com.acrylic.chatfunction;
 import com.acrylic.AcrylicChatAPI;
 import com.acrylic.chatvariables.AbstractChatVariableSet;
 import com.acrylic.chatvariables.ChatVariable;
-import com.acrylic.universal.json.AbstractJSONComponent;
-import com.acrylic.universal.json.JSON;
+import com.acrylic.universalnms.json.AbstractJSONComponent;
+import com.acrylic.universalnms.json.JSON;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import java.util.function.Consumer;

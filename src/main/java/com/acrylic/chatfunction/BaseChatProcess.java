@@ -3,7 +3,7 @@ package com.acrylic.chatfunction;
 import com.acrylic.chatvariables.AbstractChatVariableSet;
 import com.acrylic.chatvariables.ChatVariable;
 import com.acrylic.exceptions.UnableToUseChatVariableException;
-import com.acrylic.universal.json.JSON;
+import com.acrylic.universalnms.json.JSON;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 

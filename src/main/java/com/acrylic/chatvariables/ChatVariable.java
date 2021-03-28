@@ -1,7 +1,7 @@
 package com.acrylic.chatvariables;
 
 import com.acrylic.chatfunction.AbstractChatProcess;
-import com.acrylic.universal.json.AbstractJSONComponent;
+import com.acrylic.universalnms.json.AbstractJSONComponent;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 

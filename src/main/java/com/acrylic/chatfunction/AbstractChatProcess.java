@@ -3,9 +3,9 @@ package com.acrylic.chatfunction;
 import com.acrylic.chatvariables.ChatVariable;
 import com.acrylic.chatvariables.SingleUseChatVariable;
 import com.acrylic.exceptions.UnableToUseChatVariableException;
-import com.acrylic.universal.json.AbstractJSONComponent;
-import com.acrylic.universal.json.JSON;
-import com.acrylic.universal.json.JSONComponent;
+import com.acrylic.universalnms.json.AbstractJSONComponent;
+import com.acrylic.universalnms.json.JSON;
+import com.acrylic.universalnms.json.JSONComponent;
 import org.bukkit.entity.Player;
 
 import java.util.HashSet;

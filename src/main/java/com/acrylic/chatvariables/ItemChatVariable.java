@@ -1,12 +1,11 @@
 package com.acrylic.chatvariables;
 
 import com.acrylic.chatfunction.AbstractChatProcess;
-import com.acrylic.universal.NMSBridge;
 import com.acrylic.universal.items.ItemUtils;
-import com.acrylic.universal.json.AbstractJSONComponent;
-import com.acrylic.universal.json.JSONComponent;
 import com.acrylic.universal.text.ChatUtils;
-import com.acrylic.version_1_8.nbt.NBTItem;
+import com.acrylic.universalnms.NMSLib;
+import com.acrylic.universalnms.json.AbstractJSONComponent;
+import com.acrylic.universalnms.json.JSONComponent;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -25,8 +24,7 @@ public class ItemChatVariable implements SingleUseChatVariable {
     @Override
     public AbstractJSONComponent getReplacement(@NotNull AbstractChatProcess chatProcess, @NotNull String var) {
         ItemStack item = chatProcess.getPlayer().getItemInHand();
-        NMSBridge bridge = NMSBridge.getBridge();
-        return bridge.getJSONComponent("&r&8[" + ItemUtils.getNameWithAmount(item) + "&r&8]").item(bridge.getNBTItem(item));
+        return JSONComponent.of("&r&8[" + ItemUtils.getNameWithAmount(item) + "&r&8]").item(NMSLib.getNMSUtilityFactory().getNewNBTItem(item));
     }
 
     @Override
