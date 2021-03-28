@@ -2,6 +2,7 @@ package com.acrylic.chatvariables;
 
 import com.acrylic.paginatedcollection.PaginatedHashSet;
 
+import java.util.Set;
 import java.util.regex.Pattern;
 
 /**
@@ -10,7 +11,7 @@ import java.util.regex.Pattern;
 public interface AbstractChatVariableSet<T extends ChatVariable>
         extends Iterable<T> {
 
-    PaginatedHashSet<T> getSet();
+    Set<T> getSet();
 
     String getSplitter();
 
